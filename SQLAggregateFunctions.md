@@ -47,17 +47,64 @@ INSERT INTO Student VALUES
 
 ```
 ---------------------------------
+-- Aggregate Functions --
 
 1. Count the Total Number of Employees 
-2. Calculate the Total Salary (ignoring NULL values) 
+```sql
+SELECT COUNT(*) AS TotalEmployees FROM Employee;
+
+```
+2. Calculate the Total Salary (ignoring NULL values)
+```sql
+SELECT SUM(salary) AS TotalSalary FROM Employee;
+
+```
 3. Find the Average Salary 
+```sql
+SELECT AVG(salary) AS AverageSalary FROM Employee;
+
+```
 4. Find the Highest and Lowest Salary 
- 
+ ```sql
+ SELECT MAX(salary) AS HighestSalary,MIN(salary) AS LowestSalary FROM Employee;
+
+```
 ### GROUP BY 
 Example 1: Group By Single Column (Employee name with total salary) 
+```sql
+SELECT 
+    name,
+    SUM(salary) AS TotalSalary
+FROM Employee
+GROUP BY name;
+```
 Example 2: Group By Multiple Columns (Student subject and year) 
- 
+ ```sql
+  SELECT 
+    subject,
+    year,
+    COUNT(*) AS StudentCount
+FROM Student
+GROUP BY subject, year;
+```
+
 ### HAVING 
 Example 1: Departments with total salary ≥ 100,000 
+```sql
+SELECT 
+    department,
+    SUM(salary) AS TotalSalary
+FROM Employee
+GROUP BY department
+HAVING SUM(salary) >= 100000;
+```
 Example 2: Subjects with more than 1 student in any year 
- 
+ ```sql
+  SELECT 
+    subject,
+    year,
+    COUNT(*) AS StudentCount
+FROM Student
+GROUP BY subject, year
+HAVING COUNT(*) > 1;
+```
