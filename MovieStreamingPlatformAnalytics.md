@@ -105,11 +105,34 @@ SELECT MAX(JoinDate) AS 'Earliest User Join Date' FROM Users
 
 ### - Intermediate Level (Deeper Insights) 
 4. Number of Users Per Subscription Type 
+```sql
+SELECT COUNT(UserID) as 'Number of Users', SubscriptionType FROM Users GROUP BY SubscriptionType
+
+```
 5. Total Watch Time per User 
+```sql
+SELECT SUM(WatchDuration) AS 'Total Watch Time' ,UserID FROM WatchHistory GROUP BY UserID;
+
+```
 6. Average Watch Duration per Movie 
+```sql
+SELECT AVG(WatchDuration) AS 'Average Duration' , MovieID FROM WatchHistory GROUP BY MovieID;
+
+```
 7. Average Watch Time per Subscription Type 
+```sql
+SELECT AVG(W.WatchDuration) as 'Average Watch Time', U.SubscriptionType FROM Users U INNER JOIN WatchHistory W ON W.UserID= U.UserID
+GROUP BY SubscriptionType
+```
 8. Number of Views per Movie (Including Zero) 
+```sql
+SELECT COUNT(WatchID) AS 'Number of Views' , MovieID FROM WatchHistory GROUP BY MovieID 
+```
 9. Average Movie Duration per Release Year 
+```sql
+ SELECT AVG(DurationMinutes)AS 'Average Movie Duration' FROM Movies GROUP BY ReleaseYear
+
+```
  
 
  
