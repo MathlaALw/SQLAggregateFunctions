@@ -51,3 +51,47 @@ INSERT INTO WatchHistory (WatchID, UserID, MovieID, WatchDate, WatchDuration) VA
 (5, 5, 5, '2025-05-13', 105);
 
 ------------------------------------
+
+
+-- Requirement -- 
+
+
+-- The company wants to track user engagement, movie popularity, watch time, and 
+-- subscription statistics to improve platform performance and personalize user recommendations. 
+
+--- ->  You must use this exact structure to create the tables, insert the sample 
+-- data, and then apply the aggregation queries listed for Beginner, Intermediate, and Advanced levels. 
+ 
+-- - Beginner Level (Basic Practice) 
+-- 1. Total Number of Users 
+SELECT COUNT(*) AS 'Total Student' FROM Users;
+
+-- 2. Average Duration of All Movies 
+SELECT AVG(DurationMinutes) AS 'Average Duration' FROM Movies;
+-- 3. Total Watch Time 
+SELECT SUM(WatchDuration) AS 'Average Duration' FROM WatchHistory;
+-- 4. Number of Movies per Genre 
+SELECT COUNT(MovieID) as 'Number of Movies', Genre FROM Movies GROUP BY Genre
+-- 5. Earliest User Join Date 
+SELECT MAX(JoinDate) AS 'Earliest User Join Date' FROM Users
+-- 6. Latest Movie Release Year 
+ SELECT MIN(JoinDate) AS 'Earliest User Join Date' FROM Users
+
+-- - Intermediate Level (Deeper Insights) 
+-- 4. Number of Users Per Subscription Type 
+-- 5. Total Watch Time per User 
+-- 6. Average Watch Duration per Movie 
+-- 7. Average Watch Time per Subscription Type 
+-- 8. Number of Views per Movie (Including Zero) 
+-- 9. Average Movie Duration per Release Year 
+ 
+
+ 
+ 
+-- - Advanced Level (Challenging Scenarios) 
+-- 7. Most Watched Movie 
+-- 8. Users Who Watched More Than 100 Minutes 
+-- 9. Total Watch Time per Genre 
+-- 10. Identify Binge Watchers (Users Who Watched 2 or More Movies in One Day) 
+-- 11. Genre Popularity (Total Watch Duration by Genre) 
+-- 12. User Retention Insight: Number of Users Joined Each Month
