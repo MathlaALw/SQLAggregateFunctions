@@ -69,7 +69,7 @@ SELECT COUNT(*) AS 'Total Student' FROM Users;
 -- 2. Average Duration of All Movies 
 SELECT AVG(DurationMinutes) AS 'Average Duration' FROM Movies;
 -- 3. Total Watch Time 
-SELECT SUM(WatchDuration) AS 'Average Duration' FROM WatchHistory;
+SELECT SUM(WatchDuration) AS 'Total Duration' FROM WatchHistory;
 -- 4. Number of Movies per Genre 
 SELECT COUNT(MovieID) as 'Number of Movies', Genre FROM Movies GROUP BY Genre
 -- 5. Earliest User Join Date 
@@ -79,12 +79,23 @@ SELECT MAX(JoinDate) AS 'Earliest User Join Date' FROM Users
 
 -- - Intermediate Level (Deeper Insights) 
 -- 4. Number of Users Per Subscription Type 
+SELECT COUNT(UserID) as 'Number of Users', SubscriptionType FROM Users GROUP BY SubscriptionType
 -- 5. Total Watch Time per User 
+SELECT SUM(WatchDuration) AS 'Total Watch Time' ,UserID FROM WatchHistory GROUP BY UserID;
 -- 6. Average Watch Duration per Movie 
+SELECT AVG(WatchDuration) AS 'Average Duration' , MovieID FROM WatchHistory GROUP BY MovieID;
 -- 7. Average Watch Time per Subscription Type 
+SELECT AVG(W.WatchDuration) as 'Average Watch Time', U.SubscriptionType FROM Users U INNER JOIN WatchHistory W ON W.UserID= U.UserID
+GROUP BY SubscriptionType
+
 -- 8. Number of Views per Movie (Including Zero) 
+SELECT * FROM Movies
+SELECT * FROM Users
+SELECT * FROM WatchHistory
+
+SELECT COUNT(WatchID) AS 'Number of Views' , MovieID FROM WatchHistory GROUP BY MovieID 
 -- 9. Average Movie Duration per Release Year 
- 
+ SELECT AVG(DurationMinutes)AS 'Average Movie Duration' FROM Movies GROUP BY ReleaseYear
 
  
  
