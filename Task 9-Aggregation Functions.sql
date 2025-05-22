@@ -33,9 +33,27 @@ SELECT Hostel_ID, COUNT(*) AS student_count
 FROM Student
 GROUP BY Hostel_ID;
  
+-----------------------------------
 
 -- Airline Database 
+use airline
 -- 11. Count total flights in FLIGHT table. 
+SELECT COUNT(*) AS total_flights FROM FLIGHT;
 -- 12. Average available seats per leg using FLIGHT_LEG table. 
+SELECT AVG(NO_Of_Available_Seats) AS avg_available_seats FROM LegInstance;
 -- 13. Count flights scheduled per airline from FLIGHT grouped by Airline_ID. 
--- 14. Total payments per leg using LEG_INSTANCE table grouped by Flight_Leg_ID. 
+SELECT Number, COUNT(*) AS flight_count
+FROM FLIGHT
+GROUP BY Number;
+-- 14. Total payments per leg using LEG_INSTANCE table grouped by Flight_Leg_ID. // -- missing column (Payment_Amount)
+SELECT Leg_No, SUM(Payment_Amount) AS total_payments
+FROM FlightLeg
+GROUP BY Leg_No;
+-- 15. List flight legs with total payments > 10000 grouped by Flight_Leg_ID // -- missing column (Payment_Amount)
+SELECT Leg_No, SUM(Payment_Amount) AS total_payments
+FROM FlightLeg
+GROUP BY Leg_No
+HAVING SUM(Payment_Amount) > 10000;
+
+
+-------------------------------
