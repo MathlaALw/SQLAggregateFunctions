@@ -57,3 +57,25 @@ HAVING SUM(Payment_Amount) > 10000;
 
 
 -------------------------------
+
+-- Hotel Database
+use hotel;
+--16. Count total rooms across all hotels from Rooms table.
+SELECT COUNT(*) AS total_rooms FROM Room;
+--17. Average room price per night from Rooms table.
+ -- SELECT AVG(Price_Per_Night) AS avg_room_price FROM Room;
+--18. Count rooms per hotel grouped by Hotel_ID.
+SELECT Branch_ID, COUNT(*) AS room_count
+FROM Room
+GROUP BY Branch_ID;
+--19.  Sum booking cost per guest from Bookings grouped by Guest_ID.
+ --  SELECT Booking_ID, SUM(Booking_Cost) AS total_booking_cost FROM Booking GROUP BY Booking_ID;
+--20.  Guests with total bookings > 5000 grouped by Guest_ID.
+ -- SELECT C_ID, SUM(Booking_Cost) AS total_booking_cost FROM Booking GROUP BY C_ID HAVING SUM(Booking_Cost) > 5000;
+
+
+ --------------------------------------
+
+
+
+
