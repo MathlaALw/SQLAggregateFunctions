@@ -76,6 +76,26 @@ GROUP BY Branch_ID;
 
  --------------------------------------
 
+-- Bank Database
+use Bank;
+--21. Count total number of customers in Customers table.
+SELECT COUNT(*) AS total_customers FROM Customer;
+--22. Average account balance from Accounts table.
+SELECT AVG(Balance) AS avg_balance FROM Accounts;
+--23. Count accounts per branch grouped by Branch_ID.
+SELECT Account_Number, COUNT(*) AS account_count
+FROM Accounts
+GROUP BY Account_Number;
+--24. Sum loan amounts per customer from Loans grouped by Customer_ID.
+SELECT Customer_ID, SUM(Amount) AS total_loan
+FROM Loans
+GROUP BY Customer_ID;
+--25.  List customers with total loan > 200000 grouped by Customer_ID.
+SELECT Customer_ID, SUM(Amount) AS total_loan
+FROM Loans
+GROUP BY Customer_ID
+HAVING SUM(Amount) > 200000;
 
 
+---------------------------
 
