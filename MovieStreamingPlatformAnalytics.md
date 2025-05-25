@@ -139,8 +139,48 @@ SELECT COUNT(WatchID) AS 'Number of Views' , MovieID FROM WatchHistory GROUP BY 
  
 ### - Advanced Level (Challenging Scenarios) 
 7. Most Watched Movie 
+```sql
+SELECT  M.Title, COUNT(*) AS WatchCount
+FROM WatchHistory WH
+JOIN Movies M ON WH.MovieID = M.MovieID
+GROUP BY M.Title
+```
 8. Users Who Watched More Than 100 Minutes 
+```sql
+SELECT U.FullName, SUM(WH.WatchDuration) AS TotalWatchTime
+FROM WatchHistory WH
+JOIN Users U ON WH.UserID = U.UserID
+GROUP BY U.FullName
+HAVING SUM(WH.WatchDuration) > 100;
+```
 9. Total Watch Time per Genre 
+```sql
+SELECT M.Genre, SUM(WH.WatchDuration) AS TotalWatchTime
+FROM WatchHistory WH
+JOIN Movies M ON WH.MovieID = M.MovieID
+GROUP BY M.Genre;
+```
 10. Identify Binge Watchers (Users Who Watched 2 or More Movies in One Day) 
+```sql
+SELECT U.FullName, WH.WatchDate, COUNT(*) AS MoviesWatched
+FROM WatchHistory WH
+JOIN Users U ON WH.UserID = U.UserID
+GROUP BY U.FullName, WH.WatchDate
+HAVING COUNT(*) >= 2
+ORDER BY WH.WatchDate;
+```
 11. Genre Popularity (Total Watch Duration by Genre) 
+```sql
+SELECT M.Genre, SUM(WH.WatchDuration) AS TotalDuration
+FROM WatchHistory WH
+JOIN Movies M ON WH.MovieID = M.MovieID
+GROUP BY M.Genre
+ORDER BY TotalDuration DESC;
+```
 12. User Retention Insight: Number of Users Joined Each Month
+```sql
+SELECT JoinDate AS JoinMonth, COUNT(*) AS NewUsers
+FROM Users
+GROUP BY JoinDate
+ORDER BY JoinMonth;
+```
